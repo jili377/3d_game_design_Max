@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://boi2am5ruptm6"]
+
+[ext_resource type="Script" uid="uid://ddlp5s3y67fbc" path="res://character_body_3d.gd" id="1_y2yqg"]
+[ext_resource type="Texture2D" uid="uid://bglxk472oanch" path="res://grasslands_sunset_4k.exr" id="2_fji6l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fji6l"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_73ytm"]
+radius = 0.436
+height = 3.036
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_73ytm"]
+panorama = ExtResource("2_fji6l")
+
+[sub_resource type="Sky" id="Sky_y2yqg"]
+sky_material = SubResource("PanoramaSkyMaterial_73ytm")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_fji6l"]
+background_mode = 2
+sky = SubResource("Sky_y2yqg")
+sky_custom_fov = 27.0
+ambient_light_color = Color(0.16103944, 0.4516893, 0.6516109, 1)
+ambient_light_energy = 6.2
+
+[node name="Node3D" type="Node3D" unique_id=1980253389]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=453261271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0144339, 0)
+script = ExtResource("1_y2yqg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1071703584]
+shape = SubResource("CapsuleShape3D_fji6l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/CollisionShape3D" unique_id=772338616]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55953383, 0)
+mesh = SubResource("CapsuleMesh_73ytm")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=235147360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105, 2.4493084, 8.523314)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1873424999]
+transform = Transform3D(0.7221171, 0.6668192, 0.18411647, -0.54319096, 0.38176107, 0.7477981, 0.42835757, -0.6400083, 0.6378864, -3.226, 6.237, -1.172)
+light_color = Color(0.515935, 0.83256215, 0.9040639, 1)
+light_energy = 0.333
+light_indirect_energy = 11.297
+light_volumetric_fog_energy = 5.834
+light_angular_distance = 54.36
+light_specular = 6.961
+shadow_enabled = true
+shadow_bias = 3.14
+shadow_normal_bias = 2.871
+shadow_transmittance_bias = -6.075
+shadow_blur = 1.235
+sky_mode = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1559647253]
+transform = Transform3D(1, 0, 0, 0, 0.99486303, 0.101229936, 0, -0.101229936, 0.99486303, 0.3406878, -0.19746935, 0.9056424)
+transparency = 0.6
+use_collision = true
+size = Vector3(15.945, 1, 20)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1995535277]
+environment = SubResource("Environment_fji6l")
